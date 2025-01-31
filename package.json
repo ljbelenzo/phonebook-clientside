@@ -11,7 +11,7 @@
     "react-transition-group": "^4.4.5"
   },
   "scripts": {
-    "start": "set REACT_APP_SERVER_CONNECTIVTY=http://localhost:5000&& react-scripts start",
+    "start": "set REACT_APP_SERVER_CONNECTIVTY=https://phonebook-serverside-production.up.railway.app&& react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
