@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef, useEffect,useContext } from "react";
 import { AuthContext } from "../context/auth-context";
 
-const serverHost = "https://phonebook-serverside-production.up.railway.app/";
+const serverHost = "https://phonebook-serverside-production.up.railway.app";
 
 const ExemptedAuthEndpoints = [];
 
@@ -24,6 +24,8 @@ export const useHttpClient = () => {
         if(!(body instanceof FormData)) headers = {...headers, 'Content-Type':'application/json'};
 
         try{
+        console.log("error:", `${serverHost}${url}`);
+
             const response = await fetch(`${serverHost}${url}`, {
                 method,
                 body,
