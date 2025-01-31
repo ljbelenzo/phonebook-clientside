@@ -4,7 +4,7 @@ import Avatar from "../../shared/components/UIElements/Avatar";
 
 import './UserTable.css';
 
-const serverHost = "http://localhost:5000";
+const serverHost = "https://phonebook-serverside-production.up.railway.app";
 
 const UserTable = props => {
     const {id,name,contact,email,status,userImage} = props;
