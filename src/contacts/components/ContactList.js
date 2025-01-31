@@ -38,7 +38,7 @@ const ContactList = props => {
 
                     {items.length === 0 &&
                         <tr>
-                            <td colSpan="3"> <div className='center'>Phonebook Empty</div> </td>
+                            <td colSpan="5"> <div className='center'>Phonebook Empty</div> </td>
                         </tr>
                     }
                 </table>
