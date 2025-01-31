@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef, useEffect,useContext } from "react";
 import { AuthContext } from "../context/auth-context";
 
-const serverHost = process.env?.REACT_APP_SERVER_CONNECTIVTY || "http://localhost:5000";
+const serverHost = process.env?.REACT_APP_SERVER_CONNECTIVTY || "https://phonebook-serverside-production.up.railway.app";
 
 const ExemptedAuthEndpoints = [];
 

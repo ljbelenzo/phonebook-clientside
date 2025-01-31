@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import Avatar from "../../shared/components/UIElements/Avatar";
 import './ContactTable.css';
 
-const serverHost = process.env?.REACT_APP_SERVER_CONNECTIVTY || "http://localhost:5000";
+const serverHost = process.env?.REACT_APP_SERVER_CONNECTIVTY || "https://phonebook-serverside-production.up.railway.app";
 
 
 const ContactTable = props => {
