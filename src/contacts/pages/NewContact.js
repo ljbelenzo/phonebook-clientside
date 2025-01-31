@@ -10,7 +10,7 @@ import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/FormElements/Button";
 
-import { VALIDATOR_REQUIRE } from "../../shared/util/validators";
+import { VALIDATOR_REQUIRE,VALIDATOR_EMAIL } from "../../shared/util/validators";
 
 import ImageUpload from "../../shared/components/FormElements/ImageUpload";
 
@@ -20,11 +20,19 @@ const NewContact = () => {
     const {isLoading, error, sendRequest, clearError} = useHttpClient();
    
     const [formState, inputHandler] = useForm({
-        contactName: {
+        contactFirstName: {
+            value: '',
+            isValid: false,
+        },
+        contactLastName: {
             value: '',
             isValid: false,
         },
         contactNumber: {
+            value: '',
+            isValid: false,
+        },
+        contactEmail: {
             value: '',
             isValid: false,
         },
@@ -37,7 +45,7 @@ const NewContact = () => {
     const history = useHistory();
     const submitHandler = async event => {
         event.preventDefault();
-        const {contactName,contactNumber,
+        const {contactFirstName,contactLastName,contactNumber,contactEmail
             // contactPhoto
         } = formState?.inputs
 
@@ -48,7 +56,9 @@ const NewContact = () => {
         // formData.append('contactPhoto', contactPhoto.value);
 
         await sendRequest('/contact','POST',JSON.stringify({
-            contactName: contactName.value,
+            contactFirstName: contactFirstName.value,
+            contactLastName: contactLastName.value,
+            contactEmail: contactEmail.value,
             contactNumber: contactNumber.value,
     }   ),{});
 
@@ -65,12 +75,30 @@ const NewContact = () => {
                 {isLoading && <LoadingSpinner asOverlay/>}
                 <ImageUpload center id="contactPhoto" onInput={inputHandler} errorText="Contact Photo is needed" />
                 <Input
-                    id="contactName"
+                    id="contactFirstName"
                     type="text" 
-                    label="Contact Name"
+                    label="Contact First Name"
                     element="input"
                     validators={[VALIDATOR_REQUIRE()]}
                     errorText="Field must not be empty."
+                    onInput={inputHandler}
+                />
+                 <Input
+                    id="contactLastName"
+                    type="text" 
+                    label="Contact Last Name"
+                    element="input"
+                    validators={[VALIDATOR_REQUIRE()]}
+                    errorText="Field must not be empty."
+                    onInput={inputHandler}
+                />
+                 <Input
+                    id="contactEmail"
+                    type="text" 
+                    label="Contact Email"
+                    element="input"
+                    validators={[VALIDATOR_EMAIL()]}
+                    errorText="Field must not be a valid email."
                     onInput={inputHandler}
                 />
                 <Input

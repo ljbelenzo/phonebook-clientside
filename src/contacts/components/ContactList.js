@@ -15,7 +15,9 @@ const ContactList = props => {
                 <table>
                     <tr>
                         <th></th>
-                        <th>Contact</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
                         <th>Number</th>
                     </tr>
 
@@ -24,7 +26,9 @@ const ContactList = props => {
                                 key={contacts.id} 
                                 id={contacts.id} 
                                 ownerId={contacts.ownerId} 
-                                contactName={contacts.contactName} 
+                                contactFirstName={contacts.contactFirstName} 
+                                contactLastName={contacts.contactLastName} 
+                                contactEmail={contacts.contactEmail} 
                                 contactNumber={contacts.contactNumber} 
                                 contactPhoto={contacts.contactPhoto}
                                 shared={contacts.shared || false} 

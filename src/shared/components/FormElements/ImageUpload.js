@@ -3,7 +3,7 @@ import React,{useRef, useState, useEffect} from 'react';
 import Button from './Button';
 import './ImageUpload.css';
 
-const serverHost = "https://phonebook-serverside-production.up.railway.app";
+const serverHost = "http://localhost:5000";
 
 const ImageUpload = props => {
     const {id:propsId, center:propsCenter, errorText, initialValue, readOnly} = props;

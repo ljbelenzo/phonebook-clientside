@@ -14,7 +14,7 @@ import Button from "../../shared/components/FormElements/Button";
 
 import ImageUpload from "../../shared/components/FormElements/ImageUpload";
 
-import { VALIDATOR_REQUIRE } from "../../shared/util/validators";
+import { VALIDATOR_REQUIRE,VALIDATOR_EMAIL } from "../../shared/util/validators";
 
 import "./NewContact.css";
 
@@ -26,11 +26,19 @@ const UpdateContact = () => {
     const contactId = useParams().cid;
 
      const [formState, inputHandler, setFormData] = useForm({
-            contactName: {
+            contactFirstName: {
+                value: '',
+                isValid: false,
+            },
+            contactLastName: {
                 value: '',
                 isValid: false,
             },
             contactNumber: {
+                value: '',
+                isValid: false,
+            },
+            contactEmail: {
                 value: '',
                 isValid: false,
             },
@@ -47,14 +55,22 @@ const UpdateContact = () => {
         const request = async () =>{
             try{
                 const {data} = await sendRequest(`/contact?where={"_id":"${contactId}"}`);
-                const {contactName,contactNumber, contactPhoto, ownerId} = data[0];
+                const {contactFirstName,contactLastName,contactNumber,contactEmail, contactPhoto, ownerId} = data[0];
                 setFormData({
-                            contactName:{
-                                value: contactName,
+                            contactFirstName:{
+                                value: contactFirstName,
+                                isValid: true,
+                            },
+                            contactLastName:{
+                                value: contactLastName,
                                 isValid: true,
                             },
                             contactNumber:{
                                 value: contactNumber,
+                                isValid: true,
+                            },
+                            contactEmail:{
+                                value: contactEmail,
                                 isValid: true,
                             },
                             contactPhoto:{
@@ -75,7 +91,7 @@ const UpdateContact = () => {
     
     const submitUpdateHandler = async event => {
         event.preventDefault();
-        const {contactName,contactNumber,
+        const {contactFirstName,contactLastName,contactNumber,contactEmail
             // contactPhoto
         } = formState?.inputs
 
@@ -86,7 +102,9 @@ const UpdateContact = () => {
             // formData.append('contactPhoto',contactPhoto.value);
             
             await sendRequest(`/contact/${contactId}`,'PATCH', JSON.stringify({
-                contactName: contactName.value,
+                contactFirstName: contactFirstName.value,
+                contactLastName: contactLastName.value,
+                contactEmail: contactEmail.value,
                 contactNumber: contactNumber.value,
             }), {});
 
@@ -146,14 +164,40 @@ const UpdateContact = () => {
                     >
                         <ImageUpload center id="contactPhoto" onInput={inputHandler} initialValue={identifiedContact.contactPhoto} readOnly={sharedContact} />
                         <Input 
-                        id="contactName"
+                        id="contactFirstName"
                         element="input"
                         type="text"
-                        label="Contact Name"
+                        label="Contact First Name"
                         validators={[VALIDATOR_REQUIRE()]}
                         errorText="Field is required"
                         onInput={inputHandler}
-                        initialValue={identifiedContact.contactName}
+                        initialValue={identifiedContact.contactFirstName}
+                        initialValid={true}
+                        readOnly={sharedContact}
+                        />
+
+                        <Input 
+                        id="contactLastName"
+                        element="input"
+                        type="text"
+                        label="Contact Last Name"
+                        validators={[VALIDATOR_REQUIRE()]}
+                        errorText="Field is required"
+                        onInput={inputHandler}
+                        initialValue={identifiedContact.contactLastName}
+                        initialValid={true}
+                        readOnly={sharedContact}
+                        />
+
+                        <Input 
+                        id="contactEmail"
+                        element="input"
+                        type="text"
+                        label="Contact Email"
+                        validators={[VALIDATOR_EMAIL()]}
+                        errorText="Field is required"
+                        onInput={inputHandler}
+                        initialValue={identifiedContact.contactEmail}
                         initialValid={true}
                         readOnly={sharedContact}
                         />
