@@ -24,9 +24,7 @@ export const useHttpClient = () => {
         if(!(body instanceof FormData)) headers = {...headers, 'Content-Type':'application/json'};
 
         try{
-        console.log("error:", `${serverHost}${url}`);
-
-            const response = await fetch("https://phonebook-serverside-production.up.railway.app/user/email/ljbelenzo@gmail.com", {
+            const response = await fetch(`${serverHost}${url}`, {
                 method,
                 body,
                 headers: {...authHeader,...headers},
