@@ -37,7 +37,9 @@ const NewContact = () => {
     const history = useHistory();
     const submitHandler = async event => {
         event.preventDefault();
-        const {contactName,contactNumber,contactPhoto} = formState?.inputs
+        const {contactName,contactNumber,
+            // contactPhoto
+        } = formState?.inputs
 
       try{
         // const formData = new FormData();
