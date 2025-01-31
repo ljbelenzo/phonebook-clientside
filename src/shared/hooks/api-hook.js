@@ -21,9 +21,10 @@ export const useHttpClient = () => {
 
         if(ExemptedAuthEndpoints.includes(url)) authHeader = undefined;
 
-        // if(!(body instanceof FormData)) headers = {...headers, 'Content-Type':'application/json'};
+        if(!(body instanceof FormData)) headers = {...headers, 'Content-Type':'application/json'};
 
-        headers = {...headers, 'Content-Type':'application/json'}
+        console.log(!(body instanceof FormData));
+        console.log(headers);
 
         try{
             const response = await fetch(`${serverHost}${url}`, {
