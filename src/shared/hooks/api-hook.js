@@ -30,7 +30,7 @@ export const useHttpClient = () => {
                 method,
                 body,
                 headers: {...authHeader,...headers},
-                signal: httpAbortControll.signal,
+                // signal: httpAbortControll.signal,
             });
 
 
