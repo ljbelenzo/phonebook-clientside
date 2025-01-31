@@ -45,6 +45,7 @@ export const useHttpClient = () => {
              setIsLoading(false);
             return resData;
        }catch(err){
+        console.log("error:", err);
         setIsLoading(false);
         setError(err?.message || "Something went wrong with Http Client");
         throw err;
