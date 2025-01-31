@@ -3,7 +3,7 @@ import React,{useRef, useState, useEffect} from 'react';
 import Button from './Button';
 import './ImageUpload.css';
 
-const serverHost = process.env?.REACT_APP_SERVER_CONNECTIVTY || "https://phonebook-serverside-production.up.railway.app";
+const serverHost = "https://phonebook-serverside-production.up.railway.app";
 
 const ImageUpload = props => {
     const {id:propsId, center:propsCenter, errorText, initialValue, readOnly} = props;
