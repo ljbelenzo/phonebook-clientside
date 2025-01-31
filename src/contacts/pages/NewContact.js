@@ -44,6 +44,10 @@ const NewContact = () => {
         formData.append('contactName', contactName.value);
         formData.append('contactNumber', contactNumber.value);
         formData.append('contactPhoto', contactPhoto.value);
+
+        console.log(contactName.value);
+        console.log(contactNumber.value);
+
         await sendRequest('/contact','POST',formData,{});
 
         history.push('/');
