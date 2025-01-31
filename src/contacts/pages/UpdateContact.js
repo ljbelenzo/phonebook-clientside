@@ -75,15 +75,20 @@ const UpdateContact = () => {
     
     const submitUpdateHandler = async event => {
         event.preventDefault();
-        const {contactNumber, contactName, contactPhoto} = formState?.inputs;
+        const {contactName,contactNumber,
+            // contactPhoto
+        } = formState?.inputs
 
        try{
-            const formData = new FormData();
-            formData.append('contactNumber',contactNumber.value);
-            formData.append('contactName',contactName.value);
-            formData.append('contactPhoto',contactPhoto.value);
+            // const formData = new FormData();
+            // formData.append('contactNumber',contactNumber.value);
+            // formData.append('contactName',contactName.value);
+            // formData.append('contactPhoto',contactPhoto.value);
             
-            await sendRequest(`/contact/${contactId}`,'PATCH', formData, {});
+            await sendRequest(`/contact/${contactId}`,'PATCH', JSON.stringify({
+                contactName: contactName.value,
+                contactNumber: contactNumber.value,
+            }), {});
 
             history.push(`/`);
        }catch(err){}

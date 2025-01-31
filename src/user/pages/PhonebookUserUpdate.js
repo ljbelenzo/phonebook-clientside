@@ -98,7 +98,12 @@ const PhonebookUserUpdate = () => {
                 formData.append('contactNumber',contactNumber.value);
                 formData.append('contactPhoto',contactPhoto.value);
                 
-                await sendRequest(`/user/${userId}`,'PATCH', formData, {});
+                await sendRequest(`/user/${userId}`,'PATCH', JSON.stringify({
+                    firstName: firstName.value,
+                    lastName: lastName.value,
+                    email: email.value,
+                    contactNumber: contactNumber.value,
+                }), {});
     
                 history.push(`/admin/users`);
            }catch(err){}
@@ -125,7 +130,9 @@ const PhonebookUserUpdate = () => {
             try{
                 const formData = new FormData();
                 formData.append('status',status);
-                await sendRequest(`/user/${userId}`,'PATCH',formData, {});
+                await sendRequest(`/user/${userId}`,'PATCH',JSON.stringify({
+                    status: status,
+                } ), {});
                 history.push(`/admin/users`);
             }catch(err){}
         }

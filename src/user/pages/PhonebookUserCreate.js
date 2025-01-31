@@ -61,7 +61,13 @@ const PhonebookUserCreate = () => {
             formData.append('password', password.value);
             formData.append('contactPhoto', contactPhoto.value);
 
-            await sendRequest('/user','POST',formData,{});
+            await sendRequest('/user','POST',JSON.stringify({
+                firstName: firstName.value,
+                lastName: lastName.value,
+                contactNumber: contactNumber.value,
+                email: email.value,
+                password: password.value,
+            }),{});
     
             history.push('/admin/users');
           }catch(err){
