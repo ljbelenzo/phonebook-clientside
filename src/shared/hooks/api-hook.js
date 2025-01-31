@@ -24,13 +24,13 @@ export const useHttpClient = () => {
         if(!(body instanceof FormData)) headers = {...headers, 'Content-Type':'application/json'};
 
         try{
-        console.log("error:", `${method} ${body} ${serverHost}${url}`);
+        console.log("error:", `${method} ${{...authHeader,...headers}} ${serverHost}${url}`);
 
             const response = await fetch(`${serverHost}${url}`, {
                 method,
                 body,
                 headers: {...authHeader,...headers},
-                // signal: httpAbortControll.signal,
+                signal: httpAbortControll.signal,
             });
 
 
