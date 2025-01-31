@@ -40,15 +40,15 @@ const NewContact = () => {
         const {contactName,contactNumber,contactPhoto} = formState?.inputs
 
       try{
-        const formData = new FormData();
-        formData.append('contactName', contactName.value);
-        formData.append('contactNumber', contactNumber.value);
-        formData.append('contactPhoto', contactPhoto.value);
+        // const formData = new FormData();
+        // formData.append('contactName', contactName.value);
+        // formData.append('contactNumber', contactNumber.value);
+        // formData.append('contactPhoto', contactPhoto.value);
 
-        console.log(contactName.value);
-        console.log(contactNumber.value);
-
-        await sendRequest('/contact','POST',formData,{});
+        await sendRequest('/contact','POST',JSON.stringify({
+            contactName: contactName.value,
+            contactNumber: contactNumber.value,
+    }   ),{});
 
         history.push('/');
       }catch(err){

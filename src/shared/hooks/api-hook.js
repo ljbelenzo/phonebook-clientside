@@ -23,10 +23,6 @@ export const useHttpClient = () => {
 
         if(!(body instanceof FormData)) headers = {...headers, 'Content-Type':'application/json'};
 
-        console.log(!(body instanceof FormData));
-        console.log(headers);
-        console.log(body);
-
         try{
             const response = await fetch(`${serverHost}${url}`, {
                 method,
