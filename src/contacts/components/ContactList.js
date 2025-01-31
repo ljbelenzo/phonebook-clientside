@@ -1,0 +1,46 @@
+import React from 'react';
+
+import ContactTable from './ContactTable';
+
+import './ContactList.css';
+
+const ContactList = props => {
+    const { items } = props;
+
+    
+
+    return (
+        <React.Fragment>
+            <div className="center">
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>Contact</th>
+                        <th>Number</th>
+                    </tr>
+
+                    {items.length > 0 && items.map(contacts=> (
+                            <ContactTable 
+                                key={contacts.id} 
+                                id={contacts.id} 
+                                ownerId={contacts.ownerId} 
+                                contactName={contacts.contactName} 
+                                contactNumber={contacts.contactNumber} 
+                                contactPhoto={contacts.contactPhoto}
+                                shared={contacts.shared || false} 
+                            />
+                        ))
+                    }
+
+                    {items.length === 0 &&
+                        <tr>
+                            <td colSpan="3"> <div className='center'>Phonebook Empty</div> </td>
+                        </tr>
+                    }
+                </table>
+             </div>
+        </React.Fragment>
+    );
+};
+
+export default ContactList;
