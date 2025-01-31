@@ -25,6 +25,7 @@ export const useHttpClient = () => {
 
         console.log(!(body instanceof FormData));
         console.log(headers);
+        console.log(body);
 
         try{
             const response = await fetch(`${serverHost}${url}`, {
