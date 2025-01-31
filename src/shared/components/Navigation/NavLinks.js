@@ -9,7 +9,7 @@ const NavLinks = props => {
    const auth = useContext(AuthContext);
     return (
         <ul className="nav-links" >
-      {auth.role && (auth?.role === "admin" || auth?.role === "super-admin") && (
+      {auth.isLoggedIn && (auth?.role === "admin" || auth?.role === "super-admin") && (
          <React.Fragment>
             <li>
                <NavLink to="/admin/users/new">New User</NavLink>
